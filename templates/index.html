@@ -1,0 +1,25 @@
+<!doctype html>
+<title>Compare</title>
+
+  <h1>{{ book }} {{ chapter }}:{{ verse }}</h1>
+
+   <iframe src="{{ url }}" width="100%"></iframe>
+
+  <p>Old text is:</p>
+  <p id="old">{{ old_text }}</p>
+  <a href="/change_old/{{book}}/{{chapter}}/{{verse}}">delete</a>
+  <br>
+  <br>
+
+  <p>New text is:</p>
+  <p id="new">{{ new_text }}</p>
+  <a href="/change_new/{{book}}/{{chapter}}/{{verse}}">delete</a>
+  <br>
+  <br>
+
+  <form action="/change_both/{{book}}/{{chapter}}/{{verse}}" method="post">
+	  <input type="text" name="user_text" size="150">
+	  <input type="submit">
+  </form>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
