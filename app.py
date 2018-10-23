@@ -54,10 +54,14 @@ def compare():
 				try:
 					with open(prefix+'old_bible/'+book+'/'+chapter+'/'+verse+'.txt', 'r') as f1:
 						old_text = f1.read()
+				except:
+					continue
+				try:
 					with open(prefix+'bible/'+book+'/'+chapter+'/'+verse+'.txt', 'r') as f2:
 						new_text = f2.read()
 				except:
-					continue
+					new_text = ''
+				
 				if old_text != new_text:
 					sm = difflib.SequenceMatcher(None, old_text, new_text)
 					old_string, new_string = show_diff(sm)

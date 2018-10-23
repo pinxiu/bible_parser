@@ -93,8 +93,9 @@ for book_index in range(len(booklist)):
 					content += span.text()
 					content += ' '
 				content = re.sub('&nbsp;', '', content)
-				content = re.sub('— ', '—', content)
 				content = re.sub('\n', ' ', content)
+				content = re.sub(' —', '—', content)
+				content = re.sub('— ', '—', content)
 				content = re.sub('“', '"', content)
 				content = re.sub('”', '"', content)
 				content = re.sub('‘', "'", content)

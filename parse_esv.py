@@ -1,22 +1,26 @@
 from json import load
 import os
-import re
 
-with open('ESV.json', 'r') as book:
+with open('ESV_updated.json', 'r') as book:
 	data = load(book)
 
-if not os.path.exists('old_bible'):
-	os.mkdir('old_bible')
+if not os.path.exists('esv_bible'):
+	os.mkdir('esv_bible')
 
 for book in data:
-	if not os.path.exists('old_bible/'+book):
-		os.mkdir('old_bible/'+book)
-	for chapter in data[book]:
-		if not os.path.exists('old_bible/'+book+'/'+chapter):
-			os.mkdir('old_bible/'+book+'/'+chapter)
-		for verse in data[book][chapter]:
-			with open('old_bible/'+book+'/'+chapter+'/'+verse+'.txt', 'w') as output:
+	with open('esv_bible/'+book + '.txt', 'w') as output:
+		output.write(book)
+		output.write('\n\n\n')
+		for chapter in sorted(data[book], key=lambda x:int(x)):
+			output.write('Chapter ')
+			output.write(chapter)
+			output.write('\n\n')
+			for verse in sorted(data[book][chapter], key=lambda x:int(x)):
 				content = data[book][chapter][verse]
-				content = re.sub('--', '—', content)
+				output.write(verse)
+				output.write(' ')
 				output.write(content)
-
+				output.write('\n')
+			output.write('\n')
+			output.write('\n')
+		output.write('\n')
